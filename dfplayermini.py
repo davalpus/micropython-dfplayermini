@@ -8,7 +8,7 @@ PLAYING = 2
 
 class Player:
     def __init__(self, pin_TX, pin_RX):
-        self.uart = UART(1, 9600, tx=pin_TX, rx=pin_RX)
+        self.uart = UART(1, 9600, tx=4, rx=5)
         self.cmd(0x3F)  # send initialization parametres
         self._fadeout_timer = Timer(-1)
 
