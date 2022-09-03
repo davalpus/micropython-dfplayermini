@@ -1,5 +1,6 @@
 import utime
 from machine import UART, Timer
+import machine
 
 IDLE = 0
 PAUSED = 1
@@ -8,12 +9,12 @@ PLAYING = 2
 
 class Player:
     def __init__(self, pin_TX, pin_RX):
-        self.uart = UART(1, 9600, tx=4, rx=5)
+        self.uart = UART(1, 9600, tx=machine.Pin(4),rx = machine.Pin(5))
         self.cmd(0x3F)  # send initialization parametres
         self._fadeout_timer = Timer(-1)
 
         self._volume = 15
-        self._max_volume = 15
+        self._max_volume = 30
         self._fadeout_speed = 0
 
     def cmd(self, command, parameter=0x00):
